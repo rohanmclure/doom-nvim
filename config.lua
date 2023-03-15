@@ -20,17 +20,20 @@ doom.leader_key = ";"
 
 -- ADDING A KEYBIND
 
+doom.colorscheme = "doom-gruvbox"
+
 doom.use_keybind({
   -- The `name` field will add the keybind to whichkey
   {"<leader>", name='+most cmds', {
     {
       { "f", '<cmd>Telescope find_files<CR>', name = '+files' },
       { "b", '<cmd>Telescope buffers<CR>', name = '+buffers' },
+      { "/", '<cmd>Telescope live_grep<CR>', name = '+global-search'},
       { "d", '<cmd>NvimTreeToggle<CR>', name = '+directory' },
       { "c", '<cmd>Telescope commands<CR>', name = '+commands' },
       { "n", '<cmd>BufferLineCycleNext<CR>', name = '+bn' },
       { "p", '<cmd>BufferLineCyclePrev<CR>', name = '+bp' },
-      { "q", function() vim.cmd(":bd") end, name = '+bd' },
+      { "q", function() vim.cmd("bp | bd # | bn") end, name = '+bd' },
       { "Q", function() vim.cmd(":wincmd q") end, name = '+split-quit' },
       { "h", function() vim.cmd(":wincmd h") end, name = '+split-left' },
       { "j", function() vim.cmd(":wincmd j") end, name = '+split-down' },
@@ -38,7 +41,7 @@ doom.use_keybind({
       { "l", function() vim.cmd(":wincmd l") end, name = '+split-right' },
       { "v", function() vim.cmd(":vsp") end, name = '+vsplit' },
       { "V", function() vim.cmd(":split") end, name = '+hsplit' },
-      { "r", function() vim.cmd(":set number! relativenumber!") end, name = '' },
+      { "r", function() vim.cmd(":set number relativenumber!") end, name = '' },
     }
   }}
 })
@@ -46,7 +49,11 @@ doom.use_keybind({
 -- ADDING A COMMAND
 
 doom.use_cmd({
-  {"CustomCommand2", function() print("Trigger my custom command 2") end}
+  {"HybridAbsoluteNumberToggle",
+    function()
+
+    end
+  }
 })
 
 -- ADDING AN AUTOCOMMAND
