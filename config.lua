@@ -9,36 +9,58 @@ doom.leader_key = ";"
 -- automatically).
 
 -- ADDING A PACKAGE
---
--- doom.use_package("EdenEast/nightfox.nvim", "sainnhe/sonokai")
--- doom.use_package({
---   "ur4ltz/surround.nvim",
---   config = function()
---     require("surround").setup({mappings_style = "sandwich"})
---   end
--- })
+
+doom.use_package({
+  "xiyaowong/nvim-transparent",
+  config = function()
+    require("transparent").setup({
+      enable = true,
+      extra_groups = {
+      },
+      exclude = {
+        "BufferLineTabClose",
+        "BufferlineBufferSelected",
+        "BufferLineFill",
+        "BufferLineBackground",
+        "BufferLineSeparator",
+        "BufferLineIndicatorSelected",
+        "NvimTreeToggle",
+      },
+      ignore_linked_group = true,
+    })
+  end
+})
 
 -- ADDING A KEYBIND
 
-doom.colorscheme = "doom-gruvbox"
+doom.doom_one.transparent_background = true
+doom.modules.features.tabline.settings.options.enforce_regular_tabs = false
+doom.modules.features.tabline.settings.options.always_show_bufferline = true
+doom.binds = {}
 
 doom.use_keybind({
   -- The `name` field will add the keybind to whichkey
   {"<leader>", name='+most cmds', {
     {
+      { "F", '<cmd>Telescope<CR>', name = '+telescope' },
       { "f", '<cmd>Telescope find_files<CR>', name = '+files' },
+      { "S", '<cmd>Telescope symbols<CR>', name = '+symbols' },
       { "b", '<cmd>Telescope buffers<CR>', name = '+buffers' },
       { "/", '<cmd>Telescope live_grep<CR>', name = '+global-search'},
+      { "$", function() require("persistence").load({ last = true }) end, name = '+restore-session' },
       { "d", '<cmd>NvimTreeToggle<CR>', name = '+directory' },
+      { "m", '<cmd>MinimapToggle<CR>', name = '+minimap' },
       { "c", '<cmd>Telescope commands<CR>', name = '+commands' },
       { "n", '<cmd>BufferLineCycleNext<CR>', name = '+bn' },
       { "p", '<cmd>BufferLineCyclePrev<CR>', name = '+bp' },
+      { "s", function() vim.cmd(":Gitsigns toggle_signs") end, name = '+toggle-git-signs' },
       { "q", function() vim.cmd("bp | bd # | bn") end, name = '+bd' },
       { "Q", function() vim.cmd(":wincmd q") end, name = '+split-quit' },
       { "h", function() vim.cmd(":wincmd h") end, name = '+split-left' },
       { "j", function() vim.cmd(":wincmd j") end, name = '+split-down' },
       { "k", function() vim.cmd(":wincmd k") end, name = '+split-up' },
       { "l", function() vim.cmd(":wincmd l") end, name = '+split-right' },
+      { "=", function() vim.cmd("") end, name = '+split-balance' },
       { "v", function() vim.cmd(":vsp") end, name = '+vsplit' },
       { "V", function() vim.cmd(":split") end, name = '+hsplit' },
       { "r", function() vim.cmd(":set number relativenumber!") end, name = '' },
@@ -57,9 +79,9 @@ doom.use_cmd({
 })
 
 -- ADDING AN AUTOCOMMAND
---
--- doom.use_autocmd({
---   { "FileType", "javascript", function() print('This is a javascript file') end }
--- })
+
+doom.use_autocmd({
+  { "VimEnter", "*", function() vim.cmd("set norelativenumber") end }
+})
 
 -- vim: sw=2 sts=2 ts=2 expandtab
