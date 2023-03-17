@@ -39,7 +39,7 @@ return {
     "symbols",         -- Navigate between code symbols using telescope
     "ranger",          -- File explorer in neovim (TODO: Test)
     -- "restclient",      -- Test HTTP requests from neovim (TODO: Test)
-    -- "show_registers",  -- Show and navigate between registers
+    "show_registers",  -- Show and navigate between registers
 
     -- Tools
     -- "dap",             -- Debug code through neovim

@@ -33,9 +33,11 @@ doom.use_package({
 
 -- ADDING A KEYBIND
 
-doom.doom_one.transparent_background = true
+doom.colorscheme = "doom-gruvbox"
+doom.modules.features.tabline.settings.options.separator_style = "|"
 doom.modules.features.tabline.settings.options.enforce_regular_tabs = false
 doom.modules.features.tabline.settings.options.always_show_bufferline = true
+
 doom.binds = {}
 
 doom.use_keybind({
