@@ -31,6 +31,10 @@ doom.use_package({
   end
 })
 
+doom.use_package({
+  "tpope/vim-fugitive"
+})
+
 -- ADDING A KEYBIND
 
 doom.colorscheme = "doom-gruvbox"
@@ -55,6 +59,22 @@ doom.use_keybind({
       { "c", '<cmd>Telescope commands<CR>', name = '+commands' },
       { "n", '<cmd>BufferLineCycleNext<CR>', name = '+bn' },
       { "p", '<cmd>BufferLineCyclePrev<CR>', name = '+bp' },
+      { "g",
+        {
+          { "b", '<cmd>Git blame<CR>', name = '+blame' },
+          { "s", '<cmd>Git status<CR>', name = '+status' },
+          { "S", '<cmd>vertical Git show --patch<CR>', name = '+status' },
+          { "a", '<cmd>vertical Git add %<CR>', name = '+add-current-file' },
+          { "c", '<cmd>vertical Git commit<CR>', name = '+commit' },
+          { "cc", '<cmd>vertical Git commit -a<CR>', name = '+commit-add-all' },
+          { "C", '<cmd>vertical Git commit --amend --no-edit<CR>', name = '+commit-amend' },
+          { "CC", '<cmd>vertical Git commit --amend --no-edit -a<CR>', name = '+commit-amend-all' },
+          { "f", '<cmd>vertical Git fetch<CR>', name = '+fetch' },
+          { "F", '<cmd>vertical Git fetch --all<CR>', name = '+fetch-all' },
+          { "p", '<cmd>vertical Git push<CR>', name = '+push' },
+          { "P", '<cmd>vertical Git push -f<CR>', name = '+push-force' },
+        }, name = '+git'
+      },
       { "s", function() vim.cmd(":Gitsigns toggle_signs") end, name = '+toggle-git-signs' },
       { "q", function() vim.cmd("bp | bd # | bn") end, name = '+bd' },
       { "Q", function() vim.cmd(":wincmd q") end, name = '+split-quit' },
